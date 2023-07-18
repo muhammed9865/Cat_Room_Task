@@ -1,0 +1,4 @@
+- Create DetailsFragment
+- Navigate to DetailsFragment from HomeFragment and pass the selected category id
+- Load the category and the notes associated with it
+- Display the category name and the notes in a RecyclerView
