@@ -1,11 +1,14 @@
 package com.salman.roomtask.ui.home
 
+
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
+import com.salman.roomtask.R
 import com.salman.roomtask.databinding.FragmentHomeBinding
 import com.salman.roomtask.ui.home.adapter.NoteAdapter
 import com.salman.roomtask.ui.util.submitList
@@ -39,6 +42,8 @@ class HomeFragment : Fragment() {
         viewModel.categories.observe(viewLifecycleOwner) { categories ->
             binding.chipGroupCategories.submitList(categories) { category ->
                 // TODO navigate to details fragment with category id
+                val action = HomeFragmentDirections.startDetailsFragment(category.id!!, category.title)
+                findNavController().navigate(action)
             }
         }
 

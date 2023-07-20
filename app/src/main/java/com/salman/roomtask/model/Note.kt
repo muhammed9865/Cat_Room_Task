@@ -1,5 +1,6 @@
 package com.salman.roomtask.model
 
+import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
@@ -11,5 +12,7 @@ import androidx.room.PrimaryKey
 data class Note(
     @PrimaryKey(autoGenerate = true)
     val id: Int? = null,
-    val text: String
+    val text: String,
+    @ColumnInfo(name = "categoryId", defaultValue = "NULL")
+    var categoryId: Int? = null
 )
