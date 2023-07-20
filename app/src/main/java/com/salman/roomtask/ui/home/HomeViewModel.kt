@@ -43,4 +43,10 @@ class HomeViewModel : ViewModel() {
             _notes.postValue(it)
         }
     }
+
+    fun updateNote(note: Note){
+        viewModelScope.launch(Dispatchers.IO){
+            database.dao.updateNote(note)
+        }
+    }
 }

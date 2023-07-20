@@ -2,8 +2,12 @@ package com.salman.roomtask.database.dao
 
 import androidx.room.Dao
 import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import androidx.room.Transaction
+import androidx.room.Update
 import com.salman.roomtask.model.Category
+import com.salman.roomtask.model.CategoryWithNotes
 import com.salman.roomtask.model.Note
 
 /**
@@ -24,4 +28,11 @@ interface AppDao {
 
     @Query("SELECT * FROM notes")
     suspend fun getAllNotes(): List<Note>
+
+    @Update(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun updateNote(note: Note)
+
+    @Transaction
+    @Query("SELECT * FROM categories WHERE id = :id")
+    fun getCategoryWithNotesById(id: Int): CategoryWithNotes?
 }
