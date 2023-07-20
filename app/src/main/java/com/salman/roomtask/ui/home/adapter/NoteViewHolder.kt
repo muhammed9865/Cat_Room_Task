@@ -8,15 +8,11 @@ import com.salman.roomtask.model.Note
  * Created by Muhammed Salman email(mahmadslman@gmail.com) on 7/18/2023.
  */
 class NoteViewHolder(
-    private val binding: ListItemNoteBinding,
-    private val listener: NoteAdapter.OnItemClickListener
+    private val binding: ListItemNoteBinding
 ) : RecyclerView.ViewHolder(binding.root) {
 
     fun bind(note: Note) {
         binding.textViewText.text = note.text
-        binding.textViewText.setOnClickListener {
-            listener.onNoteClickListener(note)
-        }
     }
 
 }

@@ -5,10 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.navArgs
 import com.salman.roomtask.databinding.FragmentDetailsBinding
-import com.salman.roomtask.model.Note
 import com.salman.roomtask.ui.home.adapter.NoteAdapter
 
 
@@ -24,28 +23,24 @@ class DetailsFragment : Fragment() {
         NoteAdapter()
     }
 
+    val args: DetailsFragmentArgs by navArgs()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentDetailsBinding.inflate(inflater)
 
-        val id = arguments?.getInt("categoryId")
-        val title = arguments?.getString("categoryName")
+        val id = args.categoryId
+        val title = args.categoryName
 
         binding.recyclerviewNotes.adapter = adapter
         binding.categoryName.text = title
 
-        viewModel.loadCategory(id!!)
+        viewModel.loadCategory(id)
         viewModel.notes.observe(viewLifecycleOwner){
             it?.let { list ->
                 adapter.submitList(list)
-                adapter.setItemClickListener(object : NoteAdapter.OnItemClickListener{
-                    override fun onNoteClickListener(note: Note) {
-
-                    }
-
-                })
             }
         }
 

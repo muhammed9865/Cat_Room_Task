@@ -11,23 +11,13 @@ import com.salman.roomtask.model.Note
  * Created by Muhammed Salman email(mahmadslman@gmail.com) on 7/18/2023.
  */
 class NoteAdapter : ListAdapter<Note, NoteViewHolder>(NoteCallback) {
-
-    private lateinit var mListener: OnItemClickListener
-
-    interface OnItemClickListener {
-        fun onNoteClickListener(note: Note)
-    }
-
-    fun setItemClickListener(listener: OnItemClickListener){
-        mListener = listener
-    }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NoteViewHolder {
         val binding = ListItemNoteBinding.inflate(
             LayoutInflater.from(parent.context),
             parent,
             false
         )
-        return NoteViewHolder(binding, mListener)
+        return NoteViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: NoteViewHolder, position: Int) {
